@@ -14,24 +14,30 @@
 # An example set of tests is shown below. It is important to note that these tests are not "unit tests" in 
 # that they are not ran in isolation but in the order shown and the state of the device is not reset or 
 # altered in between executions (unless preconditions are used).
+
 tests = [ {'description': 'When A0 is 1',
     'steps': [ {'inputs': [('PINA',0x01)], 'iterations': 1 } ],
     'expected': [('PORTB',0x01)],
     },
 
-     {'description': 'When A0 and A1 is 0',
+    {'description': 'When A0 and A1 is 0',
     'steps': [ {'inputs': [('PINA',0x00)], 'iterations': 1 } ],
     'expected': [('PORTB',0x00)],
     },
 
-     {'description': 'When A1 is 1',
+    {'description': 'When A1 is 1',
     'steps': [ {'inputs': [('PINA',0x02)], 'iterations': 1 } ],
     'expected': [('PORTB',0x00)],
     },
 
-     {'description': 'When A1 and A0  1',
+    {'description': 'When A1 and A0  1',
     'steps': [ {'inputs': [('PINA',0x03)], 'iterations': 1 } ],
     'expected': [('PORTB',0x00)],
+    },
+
+    {'description': 'When PORTA => 0x05',
+    'steps': [ {'inputs': [('PINA',0x05)], 'iterations': 1 } ],
+    'expected': [('PORTB',0x01)],
     },
 
     ]

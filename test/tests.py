@@ -15,44 +15,30 @@
 # that they are not ran in isolation but in the order shown and the state of the device is not reset or 
 # altered in between executions (unless preconditions are used).
 
-tests = [ {'description': 'All Spots',
+tests = [ {'description': 'When A0 is 1',
+    'steps': [ {'inputs': [('PINA',0x01)], 'iterations': 1 } ],
+    'expected': [('PORTB',0x01)],
+    },
+
+    {'description': 'When A0 and A1 is 0',
     'steps': [ {'inputs': [('PINA',0x00)], 'iterations': 1 } ],
-    'expected': [('PORTC',0x04)],
+    'expected': [('PORTB',0x00)],
     },
 
-     {'description': 'All Spots Except Values are in Upper Nibble',
-    'steps': [ {'inputs': [('PINA',0x80)], 'iterations': 1 } ],
-    'expected': [('PORTC',0x04)],
+    {'description': 'When A1 is 1',
+    'steps': [ {'inputs': [('PINA',0x02)], 'iterations': 1 } ],
+    'expected': [('PORTB',0x00)],
     },
 
-     {'description': 'Three Spots',
-    'steps': [ {'inputs': [('PINA',0x04)], 'iterations': 1 } ],
-    'expected': [('PORTC',0x03)],
+    {'description': 'When A1 and A0  1',
+    'steps': [ {'inputs': [('PINA',0x03)], 'iterations': 1 } ],
+    'expected': [('PORTB',0x00)],
     },
 
-     {'description': 'Two Spots',
+    {'description': 'When PORTA => 0x05',
     'steps': [ {'inputs': [('PINA',0x05)], 'iterations': 1 } ],
-    'expected': [('PORTC',0x02)],
+    'expected': [('PORTB',0x01)],
     },
-
-
-      {'description': 'One Spot',
-    'steps': [ {'inputs': [('PINA',0x0B)], 'iterations': 1 } ],
-    'expected': [('PORTC',0x01)],
-    },
-
-
-       {'description': 'Zero Spots',
-    'steps': [ {'inputs': [('PINA',0x0F)], 'iterations': 1 } ],
-    'expected': [('PORTC',0x80)],
-    },
-
-
-       {'description': 'Zero Spots',
-    'steps': [ {'inputs': [('PINA',0x4F)], 'iterations': 1 } ],
-    'expected': [('PORTC',0x80)],
-    },
-
 
     ]
 

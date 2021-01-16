@@ -15,46 +15,25 @@
 int main(void) {
     /* Insert DDR and PORT initializations */
 	DDRA = 0x00; PORTA = 0xFF;
-	DDRC = 0xFF; PORTC = 0x00;
+	DDRB = 0xFF; PORTB = 0x00;
 
 	unsigned char tmpA = 0x00;
-
-	unsigned char tmpC = 0x00;
+	unsigned char tmpB = 0x00;
 
     /* Insert your solution below */
     while (1) {
 	tmpA = PINA;
-	
-	// If only 1 spot is available
-	if(tmpA == 0x0E || tmpA == 0x07 || tmpA == 0x0B || tmpA == 0x0D){
-	
-		tmpC = (tmpC & 0xF0) | 0x01;
+
+	if(tmpA == 0x01 || tmpA == 0x05 || tmpA == 0x09 || tmpA == 0x0D){
+
+          tmpB = (tmpB & 0xFC) | 0x01;
 	}
 
-	// If 2 spots are available
-	 else if(tmpA == 0x03 || tmpA == 0x0C || tmpA == 0x05 || tmpA == 0x06 || tmpA == 0x0A || tmpA == 0x09){
-
-                tmpC  = (tmpC & 0xF0) | 0x02;
-        }
-
-	//If 3 spots are available
-	 else if(tmpA == 0x01 || tmpA == 0x08 || tmpA == 0x04 || tmpA == 0x02){
-
-                tmpC = (tmpC & 0xF0) | 0x03;
-        }
-
-	//If all spots are available
-	else if(tmpA == 0x00){
-	        tmpC = (tmpC & 0xF0) | 0x04;
+	else{
+	  tmpB = (tmpB & 0xFC) | 0x00;
 	}
-	
-	// If there are no spots
-	else if(tmpA == 0x0F){
-                tmpC = (tmpC & 0x70)| 0x80;
-        }
-
-
-	PORTC = tmpC;	
+ 
+	PORTB = tmpB;
 
     }
     return 0;
